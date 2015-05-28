@@ -1,26 +1,31 @@
-# Make vim the default editor.
-export EDITOR='vim';
+# Make vim the default editor
+export EDITOR="vim"
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X"
 
-# Enable persistent REPL history for `node`.
-NODE_REPL_HISTORY_FILE=~/.node_history;
-# Allow 32³ entries; the default is 1000.
-NODE_REPL_HISTORY_SIZE='32768';
+# CASK
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/etc/Caskroom"
 
-# Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='32768';
-export HISTFILESIZE="${HISTSIZE}";
-# Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
 
-# Prefer US English and use UTF-8.
-export LANG='en_US.UTF-8';
-export LC_ALL='en_US.UTF-8';
+# timestamps for bash history. www.debian-administration.org/users/rossen/weblog/1
+# saved for later analysis
+HISTTIMEFORMAT='%F %T '
+export HISTTIMEFORMAT
 
-# Highlight section titles in manual pages.
-export LESS_TERMCAP_md="${yellow}";
+# Make some commands not show up in history
+export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
 
-# Don’t clear the screen after quitting a manual page.
-export MANPAGER='less -X';
+# GOLANGGG
+export GOPATH="/Users/mrudolph/go"
 
-# Always enable colored `grep` output.
-export GREP_OPTIONS='--color=auto';
+# POSTGRES
+export PGDATA="/usr/local/var/postgres"
+
+# ANDROID
+export ANDROID_HOME=/Applications/Android\ Studio.app/sdk
+
+export PATH="/usr/local/bin:$GOPATH/bin:$ANDROID_HOME/bin::$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
