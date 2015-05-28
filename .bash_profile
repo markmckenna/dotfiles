@@ -1,7 +1,6 @@
-export PATH=/usr/local/bin:$PATH:/Development/android-sdk-macosx/platform-tools
-
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+export PATH=$PATH:/Development/android-sdk-macosx/platform-tools
+export PATH="$HOME/bin:$PATH"
 
 export ANDROID_HOME=/Development/android-sdk-macosx
 
@@ -54,8 +53,6 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 export MAVEN_OPTS="-Xms512m -Xmx1g -XX:PermSize=64m -XX:MaxPermSize=256m -Djava.awt.headless=true"
 export CLICOLOR=true
 export PATH=$PATH:/Development/jad158g.mac.intel:~/bin
-
-alias bashrc='vim ~/.bashrc && source ~/.bashrc'
 
 # bash macros
 alias bashrc='vim ~/.bashrc && source ~/.bashrc'
