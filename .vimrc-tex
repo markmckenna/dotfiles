@@ -1,0 +1,4 @@
+set formatoptions=bcroql
+set textwidth=80
+set ai
+set makeprg=make\ %:r.pdf

@@ -1,5 +1,9 @@
+export PATH=/usr/local/bin:$PATH:/Development/android-sdk-macosx/platform-tools
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
+
+export ANDROID_HOME=/Development/android-sdk-macosx
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -46,3 +50,89 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+export MAVEN_OPTS="-Xms512m -Xmx1g -XX:PermSize=64m -XX:MaxPermSize=256m -Djava.awt.headless=true"
+export CLICOLOR=true
+export PATH=$PATH:/Development/jad158g.mac.intel:~/bin
+
+alias bashrc='vim ~/.bashrc && source ~/.bashrc'
+
+# bash macros
+alias bashrc='vim ~/.bashrc && source ~/.bashrc'
+
+# git macros
+alias gitconfig='vim ~/.gitconfig'
+alias fetch='git fetch --tags --prune'
+alias merge='git merge --no-ff'
+alias push='git push'
+alias status='git status'
+alias lol='git lol'
+alias vlol='git vlol'
+alias branch='git branch'
+alias checkout='git checkout'
+alias reset='git reset'
+alias stash='git stash'
+alias commit='git commit'
+alias pull='git pull'
+alias add='git add'
+
+alias java='java -Dapple.awt.UIElement=true'
+
+# src macros
+alias gsource='cd ~/Documents/Viacom/VMNVideoPlayer-Android-Source'
+alias gsample='cd ~/Documents/Viacom/VMNVideoPlayer-Android-Sample-App'
+alias gtestrig='cd ~/Documents/Viacom/VMNVideoPlayer-Android-TestRig'
+alias gharness='cd ~/Documents/Viacom/VMNVideoPlayer-Android-TestHarness'
+alias gcomedy='cd ~/Documents/Viacom/CCNetworkAndroid'
+alias gbento='cd ~/Documents/Viacom/Bento-Android-Lib'
+
+function decompile() {
+  local OLDJDK=`getjdk`
+  setjdk 1.8
+  java -jar ~/bin/jd-core-java-1.2.jar $1.jar $1
+  setjdk $OLDJDK
+}
+
+# tool macros
+function decompile-maven() {
+  local PATH=~/.m2/repository/$1/$2/$3
+
+  pushd $PATH
+
+  if [ $? -ne 0 ]; then
+    echo "No such Maven entry found at $PATH"
+    return
+  fi
+
+  decompile $2-$3
+  jar -cf $2-$3-sources.jar -C $2-$3 *
+
+  popd
+}
+
+function setjdk() {  
+  if [ $# -ne 0 ]; then  
+   removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'  
+   if [ -n "${JAVA_HOME+x}" ]; then  
+    removeFromPath $JAVA_HOME/bin  
+   fi  
+   export JAVA_HOME=`/usr/libexec/java_home -v $@`  
+   export PATH=$JAVA_HOME/bin:$PATH  
+  fi  
+}  
+
+function getjdk() {
+  echo $(which java | egrep -o '1\.[0-9]')
+}
+
+function removeFromPath() {  
+  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
+}
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+setjdk 1.7
+
+export IDEA_JDK=$JAVA_HOME

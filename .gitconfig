@@ -1,5 +1,8 @@
-[alias]
+[user]
+	name = Mark McKenna
+	email = mark.mckenna@redspcae.com
 
+[alias]
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
@@ -72,13 +75,16 @@
 		fi \
 	}; f"
 
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	vlol = log --graph --decorate --pretty='%C(yellow)% h%Creset% s%Cgreen% cr%Cred% cN%Cblue% d' --abbrev-commit --all
+	g = grep --break --heading --line-number
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 
 [core]
-
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -95,6 +101,9 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
+
+	autocrlf = input
+	ignorecase = false
 
 [color]
 
@@ -135,15 +144,19 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	defaultToUpstream = true
 
 [push]
-
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	default = upstream
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+
+#[filter "media"]
+#	clean = git-media-clean %f
+#	smudge = git-media-smudge %f
+#[filter "tabspace"]
+#	smudge = gexpand --tabs=4 --initial
+#	clean = gexpand --tabs=4 --initial
 
 # URL shorthands
 
