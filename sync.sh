@@ -10,6 +10,7 @@ function doIt() {
         --exclude "brew.sh" \
         --exclude "brew-cask.sh" \
         --exclude "install-deps.sh" \
+        --exclude "LICENSE-MIT.txt" \
         --exclude "README.md" \
         -av . ~
 }
