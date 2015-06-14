@@ -176,24 +176,35 @@ endif
 imap jj <esc>
 
 " A couple of commands for auto-commenting and uncommenting
-map _bc :s/\(.*\)/# \1/:nohlsearch
-map _bu :s/^[ \t]*#[ ]\?//:nohlsearch
+map _bc :s/\(.*\)/# \1/
+:nohlsearch
+map _bu :s/^[ \t]*#[ ]\?//
+:nohlsearch
 
-map _cc :s#\(.*\)#// \1#:nohlsearch
-map _cu :s#^[ \t]*//[ ]\?##:nohlsearch
+map _cc :s#\(.*\)#// \1#
+:nohlsearch
+map _cu :s#^[ \t]*//[ ]\?##
+:nohlsearch
 
-map _vc :s#\(.*\)#" \1#:nohlsearch
-map _vu :s/^[ \t]*"[ ]\?//:nohlsearch
+map _vc :s#\(.*\)#" \1#
+:nohlsearch
+map _vu :s/^[ \t]*"[ ]\?//
+:nohlsearch
 
-map _mc :s#\(.*\)#> \1#:nohlsearch
-map _mu :s/^[ \t]*>[ ]\?//:nohlsearch
+map _mc :s#\(.*\)#> \1#
+:nohlsearch
+map _mu :s/^[ \t]*>[ ]\?//
+:nohlsearch
 
-map _tc :s#\(.*\)#% \1#:nohlsearch
-map _tu :s/^[ \t]*%[ ]\?//:nohlsearch
+map _tc :s#\(.*\)#% \1#
+:nohlsearch
+map _tu :s/^[ \t]*%[ ]\?//
+:nohlsearch
 
 " solaris special key bindings
 map [26~ u		" <undo> key
-map [24~ :redo	" <again> key
+map [24~ :redo
+	" <again> key
 
 " windows key bindings 
 map [5~ 
