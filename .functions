@@ -1,3 +1,7 @@
+function removeFromPath() {  
+  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
+}
+
 # Simple calculator
 function calc() {
 	local result="";
