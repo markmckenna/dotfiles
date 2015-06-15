@@ -75,4 +75,11 @@ fi
 
 export IDEA_JDK=$JAVA_HOME
 
-[ -f .bash_profile_${OSTYPE} ] && source .bash_profile_${OSTYPE}
+case $OSTYPE in
+    darwin*)
+        source .bash_profile_darwin
+        ;;
+    cygwin*)
+        source .bash_profile_cygwin
+        ;;
+esac
