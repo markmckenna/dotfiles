@@ -45,3 +45,5 @@ esac
 for file in ~/.{bash_prompt,aliases,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
+
+[ -e .bash_secure ] && source .bash_secure 
