@@ -280,3 +280,5 @@ alias gtestrig='cd ~/Documents/Viacom/VMNVideoPlayer-Android-TestRig'
 alias gharness='cd ~/Documents/Viacom/VMNVideoPlayer-Android-TestHarness'
 alias gcomedy='cd ~/Documents/Viacom/CCNetworkAndroid'
 alias gbento='cd ~/Documents/Viacom/Bento-Android-Lib'
+
+alias update-repo-tags="git tag -l | xargs git tag -d && git fetch"
