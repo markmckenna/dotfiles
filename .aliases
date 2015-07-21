@@ -255,24 +255,6 @@ function gtestsingledebug() {
 
 isOs cygwin && alias clear='echo -e "\033c"'
 
-
-
-# git macros
-alias gitconfig='vim ~/.gitconfig'
-alias fetch='git fetch --tags --prune'
-alias merge='git merge --no-ff'
-alias push='git push'
-alias status='git status'
-alias lol='git lol'
-alias vlol='git vlol'
-alias branch='git branch'
-alias checkout='git checkout'
-alias reset='git reset'
-alias stash='git stash'
-alias commit='git commit'
-alias pull='git pull'
-alias add='git add'
-
 # src macros
 alias gsource='cd ~/Documents/Viacom/VMNVideoPlayer-Android-Source'
 alias gsample='cd ~/Documents/Viacom/VMNVideoPlayer-Android-Sample-App'
