@@ -220,37 +220,24 @@ function color_maven() {
 
 alias mvn=color_maven
 
-# mvn macros
-alias compile='mvn compile'
-alias test='mvn test'
-alias test-debug='mvn -Dmaven.surefire.debug test'
-alias install='mvn clean install'
-alias package='mvn clean package android:deploy android:run -DundeployBeforeDeploy=true'
-alias install-fast='mvn clean install -DskipTests=true'
-alias package-fast='mvn clean package android:deploy android:run -DskipTests=true -DundeployBeforeDeploy=true'
-alias install-very-fast='mvn install -DskipTests=true'
-alias package-very-fast='mvn package android:deploy android:run -DskipTests=true -DundeployBeforeDeploy=true'
-
-alias build='popd 2>/dev/null; pushd ~/Documents/Viacom/VMNVideoPlayer-Android-Source && install && cd ../VMNVideoPlayer-Android-Sample-App && package && popd'
-alias build-fast='popd 2>/dev/null; pushd ~/Documents/Viacom/VMNVideoPlayer-Android-Source && install-fast && cd ../VMNVideoPlayer-Android-Sample-App && package-fast && popd'
-alias build-very-fast='popd 2>/dev/null; pushd ~/Documents/Viacom/VMNVideoPlayer-Android-Source && install-very-fast && cd ../VMNVideoPlayer-Android-Sample-App && package-very-fast && popd'
-alias build-bento='popd 2>/dev/null; pushd ~/Documents/Viacom/Bento-Android-Lib/ && /usr/local/Cellar/maven30/3.0.5/bin/mvn clean install && cd ../VMNVideoPlayer-Android-Source && install && cd ../VMNVideoPlayer-Android-Sample-App && package && popd'
-alias build-cc='popd 2>/dev/null; pushd ~/Documents/Viacom/VMNVideoPlayer-Android-Source && install && cd ../CCNetworkAndroid && /usr/local/Cellar/maven/3.2.1/bin/mvn clean install android:deploy android:run && popd'
-alias build-toshsample='popd 2>/dev/null; pushd ~/Documents/Viacom/VMNVideoPlayer-Android-Source && install && cd ../toshsample && package && popd'
-alias recompile='mvn org.apache.maven.plugins:maven-compiler-plugin:3.1:compile'
-alias retest='mvn org.apache.maven.plugins:maven-compiler-plugin:3.1:testCompile org.apache.maven.plugins:maven-surefire-plugin:2.17:test'
-
 # gradle macros
 alias gbuild='gradle installDebug ; badge'
 alias gtest='gradle testDebug ; badge'
 
-function gtestsingle() {
-    gradle testDebug -DtestDebug.single=$1
-    badge
+function gradle-test-single() {
+    gradle test -Dtest.single=$1
 }
 
-function gtestsingledebug() {
-    gradle testDebug -DtestDebug.single=$1 -DtestDebug.debug
+function gradle-test-single-debug() {
+    gradle test -Dtest.single=$1 -Dtest.debug -Ptest.jacoco.enabled=false
+}
+
+function gradle-android-test-single() {
+    gradle testDebug -DtestDebug.single=$1
+}
+
+function gradle-android-test-single-debug() {
+    gradle testDebug -DtestDebug.single=$1 -DtestDebug.debug -PtestDebug.jacoco.enabled=false
 }
 
 isOs cygwin && alias clear='echo -e "\033c"'
