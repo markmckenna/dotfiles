@@ -61,4 +61,4 @@ function getjdk() {
   echo $(which java | egrep -o '1\.[0-9]')
 }
 
-setjdk 1.7
+setjdk 1.8
