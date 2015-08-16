@@ -1,9 +1,11 @@
 # OSX-specific scripts go here
 
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
-export PATH=$PATH:/Development/android-sdk-macosx/platform-tools
 
 export ANDROID_HOME=/Development/android-sdk-macosx
+export ANDROID_BUILDTOOLS_VER=22.0.1
+
+export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILDTOOLS_VER/
 
 # Add tab completion for many Bash commands
 # TODO: Fix this
