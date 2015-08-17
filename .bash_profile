@@ -34,10 +34,10 @@ fi
 # Load platform-specific scripts
 case $OSTYPE in
     darwin*)
-        source .bash_profile_darwin
+        source `dirname $BASH_SOURCE`/.bash_profile_darwin
         ;;
     cygwin*)
-        source .bash_profile_cygwin
+        source `dirname $BASH_SOURCE`/.bash_profile_cygwin
         ;;
 esac
 
