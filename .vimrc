@@ -248,9 +248,6 @@ map <Leader>ls :buffers<CR>
 " Close Quickfix window (,qq)
 map <leader>qq :cclose<CR>
 
-" Yank from cursor to end of line
-nnoremap Y y$
-
 " Insert newline
 map <leader><Enter> o<ESC>
 
