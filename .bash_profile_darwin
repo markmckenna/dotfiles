@@ -4,6 +4,8 @@ export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 
 export ANDROID_HOME=/Development/android-sdk-macosx
 export ANDROID_BUILDTOOLS_VER=22.0.1
+export ANDROID_SDK=$ANDROID_HOME
+export ANDROID_NDK=/Development/android-ndk-r10e
 
 export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILDTOOLS_VER/
 
