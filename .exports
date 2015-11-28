@@ -23,3 +23,5 @@ export MAVEN_OPTS="-Xms512m -Xmx1g -XX:PermSize=64m -XX:MaxPermSize=256m -Djava.
 export CLICOLOR=true
 
 export IDEA_JDK=$JAVA_HOME
+
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
