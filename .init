@@ -1,0 +1,23 @@
+#!/usr/local/bin/bash
+#
+# Runs an init-like set of scripts to initialize the user's profile in a modular fashion.
+# Scripts run in numbered order in the ~/.init.d directory; non-executable scripts will be
+# skipped.  Each will be executed using 'source' so it doesn't need a shebang.
+#
+# script names may have a dotted suffix like '00-configure_android.darwin'.  These scripts
+# will only be executed on platforms where the suffix is a substring of the $OSTYPE variable.
+
+INIT_DIR=${INIT_DIR:-~/.init.d}
+
+cd $INIT_DIR &&
+
+for i in `find . -type f`; do
+    if [ -x $i ]; then
+        suffix=`echo $i | cut -d. -f3`
+        case $OSTYPE in
+             $suffix*)
+                source $i 
+             ;;
+        esac
+    fi
+done
