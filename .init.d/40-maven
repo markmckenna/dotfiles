@@ -1,0 +1,1 @@
+export MAVEN_OPTS="-Xms512m -Xmx1g -XX:PermSize=64m -XX:MaxPermSize=256m -Djava.awt.headless=true"

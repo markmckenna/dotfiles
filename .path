@@ -1,6 +1,0 @@
-[ -d $GOPATH/bin ] && PATH="$GOPATH/bin:$PATH"
-[ -d $ANDROID_HOME ] && PATH="$PATH:/usr/local/bin:$ANDROID_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
-[ -d /usr/local/bin ] && PATH="/usr/local/bin:$PATH"
-[ -d ~/bin ] && PATH="~/bin:$PATH"
-
-export PATH

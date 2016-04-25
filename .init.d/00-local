@@ -1,0 +1,8 @@
+[ -d /usr/local/bin ] && PATH="/usr/local/bin:$PATH"
+[ -d ~/bin ] && PATH="~/bin:$PATH"
+
+export PATH
+
+function removeFromPath() {  
+  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
+}

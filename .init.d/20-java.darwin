@@ -1,0 +1,42 @@
+export PATH=$PATH:/Development/jad158g.mac.intel:~/bin
+
+function decompile() {
+  local OLDJDK=`getjdk`
+  setjdk 1.8
+  java -jar ~/bin/jd-core-java-1.2.jar $1.jar $1
+  setjdk $OLDJDK
+}
+
+# tool macros
+function decompile-maven() {
+  local PATH=~/.m2/repository/$1/$2/$3
+
+  pushd $PATH
+
+  if [ $? -ne 0 ]; then
+    echo "No such Maven entry found at $PATH"
+    return
+  fi
+
+  decompile $2-$3
+  jar -cf $2-$3-sources.jar -C $2-$3 *
+
+  popd
+}
+
+function setjdk() {
+  if [ $# -ne 0 ]; then
+   removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+   if [ -n "${JAVA_HOME+x}" ]; then
+    removeFromPath $JAVA_HOME/bin
+   fi
+   export JAVA_HOME=`/usr/libexec/java_home -v $@`
+   export PATH=$JAVA_HOME/bin:$PATH
+  fi
+}
+
+function getjdk() {
+  echo $(which java | egrep -o '1\.[0-9]')
+}
+
+setjdk 1.8

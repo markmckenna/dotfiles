@@ -1,0 +1,27 @@
+shopt -s nocaseglob; # Case-insensitive globbing (used in pathname expansion)
+shopt -s histappend; # Append to the Bash history file, rather than overwriting it
+shopt -s cdspell; # Autocorrect typos in path names when using `cd`
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+	shopt -s "$option" 2> /dev/null;
+done;
+
+export CLICOLOR=true
+
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
+
+# timestamps for bash history. www.debian-administration.org/users/rossen/weblog/1
+# saved for later analysis
+export HISTTIMEFORMAT='%F %T '
+
+# Make some commands not show up in history
+export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
+
+# Add tab completion for many Bash commands
+[ -r /etc/bash_completion ] && source /etc/bash_completion

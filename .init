@@ -1,5 +1,3 @@
-#!/usr/local/bin/bash
-#
 # Runs an init-like set of scripts to initialize the user's profile in a modular fashion.
 # Scripts run in numbered order in the ~/.init.d directory; non-executable scripts will be
 # skipped.  Each will be executed using 'source' so it doesn't need a shebang.
@@ -9,7 +7,7 @@
 
 INIT_DIR=${INIT_DIR:-~/.init.d}
 
-cd $INIT_DIR &&
+pushd $INIT_DIR &&
 
 for i in `find . -type f`; do
     if [ -x $i ]; then
@@ -21,3 +19,5 @@ for i in `find . -type f`; do
         esac
     fi
 done
+
+popd
