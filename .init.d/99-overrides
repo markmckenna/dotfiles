@@ -1,0 +1,15 @@
+function movePathSegmentToFront() {
+    removeFromPath $1
+    [ -d $1 ] && PATH=$1:$PATH
+}
+
+movePathSegmentToFront /sbin
+movePathSegmentToFront /usr/sbin
+movePathSegmentToFront /usr/local/sbin
+movePathSegmentToFront ~/sbin
+movePathSegmentToFront /bin
+movePathSegmentToFront /usr/bin
+movePathSegmentToFront /usr/local/bin
+movePathSegmentToFront ~/bin
+
+export PATH

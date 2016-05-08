@@ -1,4 +1,4 @@
-export PATH=$PATH:/Development/jad158g.mac.intel:~/bin
+export PATH=$PATH:/Development/jad158g.mac.intel
 
 function decompile() {
   local OLDJDK=`getjdk`
