@@ -12,3 +12,5 @@ for file in ~/.{aliases,bash_prompt}; do
 done;
 
 [ -e .bash_secure ] && source .bash_secure 
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
