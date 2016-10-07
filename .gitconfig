@@ -46,7 +46,7 @@
 	contributors = shortlog --summary --numbered
 
     # Prune tags
-    prunetags = tag -l | xargs git tag -d && git fetch -t
+    prunetags = !git tag -l | xargs git tag -d && git fetch -t
 
 	# Merge GitHub pull request on top of the `master` branch
 	mpr = "!f() { \
