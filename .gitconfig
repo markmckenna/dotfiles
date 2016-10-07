@@ -1,28 +1,16 @@
 [user]
 	name = Mark McKenna
-	email = mark.mckenna@redspcae.com
+	email = mark.mckenna@redspace.com
 
 [alias]
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-
 	# View the current working tree status using the short format
-	s = status -s
-
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+	glance = status -s
 
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
 
 	# Clone a repository including all submodules
 	c = clone --recursive
-
-	# Commit all changes
-	ca = !git add -A && git commit -av
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -37,12 +25,6 @@
 
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
-
-	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
 	# Find branches containing commit
 	fb = "!f() { git branch -a --contains $1; }; f"
@@ -63,6 +45,9 @@
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
+    # Prune tags
+    prunetags = git tag -l | xargs git tag -d && git fetch -t
+
 	# Merge GitHub pull request on top of the `master` branch
 	mpr = "!f() { \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
@@ -77,7 +62,6 @@
 
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	vlol = log --graph --decorate --pretty='%C(yellow)% h%Creset% s%Cgreen% cr%Cred% cN%Cblue% d' --abbrev-commit --all
-	g = grep --break --heading --line-number
 
 [apply]
 
@@ -149,7 +133,7 @@
 [push]
 	default = upstream
 	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
+	followTags = false
 
 #[filter "media"]
 #	clean = git-media-clean %f
@@ -181,3 +165,7 @@
 	insteadOf = "gist:"
 [rebase]
 	autosquash = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
