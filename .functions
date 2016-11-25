@@ -1,3 +1,6 @@
+function install-player() {
+    ./gradlew -p Player $@ app:installDebug
+}
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
