@@ -61,7 +61,7 @@
 	}; f"
 
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	vlol = log --graph --decorate --pretty='%C(yellow)% h%Creset% s%Cgreen% cr%Cred% cN%Cblue% d' --abbrev-commit --all
+	vlol = log --graph --decorate --pretty='%C(yellow)% h%Creset%<(80,trunc)% s%Cgreen% cr%Cred% cN%Cblue% d' --abbrev-commit --all
 
 [apply]
 
