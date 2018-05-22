@@ -1,7 +1,7 @@
-export ANDROID_HOME=/Development/android-sdk-macosx
-export ANDROID_BUILDTOOLS_VER=22.0.1
+export ANDROID_HOME=~/Library/Android/sdk
+export ANDROID_BUILDTOOLS_VER=26.0.1
 export ANDROID_SDK=$ANDROID_HOME
-export ANDROID_NDK=/Development/android-ndk-r10e
+export ANDROID_NDK=$ANDROID_HOME/android-ndk-r10e
 
 [ -d $ANDROID_HOME ] && PATH=$PATH:$ANDROID_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILDTOOLS_VER
 

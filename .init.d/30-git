@@ -1,25 +1,27 @@
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	complete -o default -o nospace -F _git g;
-fi;
+if [ -z ${BASH+x} ]; then; else
+    if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+        complete -o default -o nospace -F _git g
+    fi
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+    if [ -f ~/.git-completion.bash ]; then
+      . ~/.git-completion.bash
+    fi
 fi
 
 # Use Git’s colored diff when available
-hash git &>/dev/null;
+hash git &>/dev/null
 if [ $? -eq 0 ]; then
 	function diff() {
-		git diff --no-index --color-words "$@";
+		git diff --no-index --color-words "$@"
 	}
-fi;
+fi
 
 # Create a git.io short URL
 function gitio() {
 	if [ -z "${1}" -o -z "${2}" ]; then
-		echo "Usage: \`gitio slug url\`";
-		return 1;
-	fi;
-	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
+		echo "Usage: \`gitio slug url\`"
+		return 1
+	fi
+	curl -i http://git.io/ -F "url=${2}" -F "code=${1}"
 }
