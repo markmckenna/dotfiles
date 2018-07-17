@@ -7,7 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -39,7 +39,7 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -59,10 +59,15 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  colored-man-pages
   git
 )
 
 source $ZSH/oh-my-zsh.sh
+
+source .init
+
+setopt noautopushd
 
 # User configuration
 
@@ -92,3 +97,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/mmckenna/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/mmckenna/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/mmckenna/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/mmckenna/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+alias setproxy='adb shell settings put global http_proxy `ifconfig | grep "inet 172.16" | head -1 | cut -d\  -f 2`:8888'
+alias clearproxy='adb shell settings delete global http_proxy;adb shell settings delete global global_http_proxy_host;adb shell settings delete global http_proxy_port'
