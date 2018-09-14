@@ -65,11 +65,11 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+setopt noautopushd pushdsilent pushdignoredups pushdtohome
+
 source .init
 
 source .zsh.aliases
-
-setopt noautopushd
 
 # User configuration
 
