@@ -146,8 +146,6 @@ function gradle-android-test-single-debug() {
     gradle testDebug -DtestDebug.single=$1 -DtestDebug.debug -PtestDebug.jacoco.enabled=false
 }
 
-isOs cygwin && alias clear='echo -e "\033c"'
-
 # src macros
 alias gsource='cd ~/Documents/Viacom/VMNVideoPlayer-Android-Source'
 alias gsample='cd ~/Documents/Viacom/VMNVideoPlayer-Android-Sample-App'
