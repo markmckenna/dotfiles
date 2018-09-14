@@ -199,3 +199,5 @@ alias gcomedy='cd ~/Documents/Viacom/CCNetworkAndroid'
 alias gbento='cd ~/Documents/Viacom/Bento-Android-Lib'
 
 alias update-repo-tags="git tag -l | xargs git tag -d && git fetch"
+
+alias logcat="adb logcat -vcolor -vepoch $*"
