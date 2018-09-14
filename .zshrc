@@ -67,6 +67,8 @@ source $ZSH/oh-my-zsh.sh
 
 source .init
 
+source .zsh.aliases
+
 setopt noautopushd
 
 # User configuration
