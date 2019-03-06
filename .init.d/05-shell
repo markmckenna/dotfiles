@@ -1,8 +1,8 @@
-if [ -z $BASH ]; then; else
-    function removeFromPath() {
-      export PATH=$(echo $PATH | sed -E -e "s#:$1##" -e "s#$1:?##")
-    }
+function removeFromPath() {
+  export PATH=$(echo $PATH | sed -E -e "s#:$1##" -e "s#$1:?##")
+}
 
+if [ -z $BASH ]; then; else
     shopt -s nocaseglob; # Case-insensitive globbing (used in pathname expansion)
     shopt -s histappend; # Append to the Bash history file, rather than overwriting it
     shopt -s cdspell; # Autocorrect typos in path names when using `cd`
