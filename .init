@@ -9,7 +9,7 @@ INIT_DIR=${INIT_DIR:-~/.init.d}
 
 pushd $INIT_DIR &&
 
-for i in `find . -type f`; do
+for i in `find . -type f | sort`; do
     if [ -x $i ]; then
         suffix=`echo $i | cut -d. -f3`
         case $OSTYPE in

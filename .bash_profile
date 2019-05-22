@@ -1,5 +1,5 @@
 # New init-scripts style configuration options
-source .init
+source .init.bash
 
 # Common values: linux, darwin, cygwin
 isOs () { [[ $OSTYPE == *$1* ]]; }
@@ -13,4 +13,8 @@ done;
 
 [ -e .bash_secure ] && source .bash_secure 
 
+#eval "$(rbenv init -)"
+
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export PATH="$HOME/.cargo/bin:$PATH"
