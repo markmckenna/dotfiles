@@ -1,59 +1,64 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
-syntax on " Enable syntax highlighting
-
-" set the runtime path to include Vundle and initialize
+" Vundle stuff
+set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
 " Git
 Plugin 'tpope/vim-fugitive'
 
 " Pretty things
-Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 Plugin 'lilydjwg/colorizer'
-Plugin 'chriskempson/base16-vim'
-Plugin 'rizzatti/dash.vim'
 
-" Colors
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'itchyny/lightline.vim'
+set noshowmode " configuration for Lightline
 
 " Linting
 Plugin 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_check_on_wq = 1
 
 " Work flow
-Plugin 'airblade/vim-rooter'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'airblade/vim-rooter'
+" Plugin 'kien/ctrlp.vim'
 
 " Scss
-Plugin 'cakebaker/scss-syntax.vim'
+" Plugin 'cakebaker/scss-syntax.vim'
 
 " Ruby
-Plugin 'tpope/vim-rails'
+" Plugin 'tpope/vim-rails'
+
 
 " Json
 Plugin 'elzr/vim-json'
 
 " Go
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 
 " PHP
-Plugin 'StanAngeloff/php.vim'
+" Plugin 'StanAngeloff/php.vim'
 
 " JS
-Plugin 'heavenshell/vim-jsdoc'
+" Plugin 'heavenshell/vim-jsdoc'
 
 call vundle#end()
 filetype plugin indent on
+
+set shell=/bin/zsh
+
+
+" Set up syntax highlighting
+set background=dark
+colorscheme badwolf
+syntax on
 
 set autowrite		" Automatically save changes when compiling
 set backspace=indent,eol,start " Allow backspace in insert mode
@@ -83,7 +88,6 @@ set formatoptions+=o " Make comment when using o or O from comment line
 set formatoptions+=q " Format comments with gq
 set formatoptions+=r " Continue comments by default
 set formatoptions=
-set gdefault " By default add g flag to search/replace. Add g to toggle.
 set hidden " When a buffer is brought to foreground, remember undo history and marks.
 set history=1000         " keep more lines of command history
 set hlsearch " Highlight searches
@@ -101,7 +105,6 @@ set magic " Enable extended regexes.
 set modeline " Respect modeline in files
 set modelines=4 
 set mouse=a " Enable mouse in all modes
-set nocompatible " Make Vim more useful
 set noeol
 set noerrorbells " Disable error bells
 set nojoinspaces " Only insert single space after a '.', '?' and '!' with a join command.
@@ -110,19 +113,19 @@ set nowrap " Do not wrap lines.
 set number " Enable line numbers
 set ofu=syntaxcomplete#Complete " Set omni-completion method.
 set report=0 " Show all changes.
-set ruler " Show the cursor position
-set scrolloff=3 " Start scrolling three lines before the horizontal window border
+" set ruler " Show the cursor position
+set scrolloff=5 " Start scrolling three lines before the horizontal window border
 set secure
 set sidescrolloff=3 " Start scrolling three columns before vertical border of window.
 set shiftwidth=4	" When (un)indenting lines, move them by 4 spaces
 set shortmess=atI " Don’t show the intro message when starting Vim
 set showcmd " Show the (partial) command as it’s being typed
-set showmode " Show the current mode
+" set showmode " Show the current mode
 set showtabline=2 " Always show tab bar.
 set smartcase " Ignore 'ignorecase' if search patter contains uppercase characters.
 set smarttab " At start of line, <Tab> inserts shiftwidth spaces, <Bs> deletes shiftwidth spaces.
-set softtabstop=4 " Tab key results in X spaces
-set tabstop=4		" use tab width of X spaces
+set softtabstop=8 " Tab key results in X spaces
+set tabstop=8		" use tab width of X spaces
 set title " Show the filename in the window titlebar
 set ttyfast " Optimize for fast terminal connections
 set ttymouse=xterm " Set mouse type to xterm.
@@ -136,22 +139,6 @@ set wildmode=list:longest " Complete only until point of ambiguity.
 set winminheight=0 "Allow splits to be reduced to a single line.
 set wrapscan " Searches wrap around end of file
 
-" Status Line
-hi User1 guibg=#455354 guifg=fg      ctermbg=238 ctermfg=fg  gui=bold,underline cterm=bold,underline term=bold,underline
-hi User2 guibg=#455354 guifg=#CC4329 ctermbg=238 ctermfg=196 gui=bold           cterm=bold           term=bold
-set statusline=[%n]\ %1*%<%.99t%*\ %2*%h%w%m%r%*%y[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]%=%-16(\ L%l,C%c\ %)%P
-" let g:Powerline_symbols = 'fancy'
-
-" Speed up viewport scrolling
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" Faster split resizing (+,-)
-if bufwinnr(1)
-  map + <C-W>+
-  map - <C-W>-
-endif
-
 let mapleader="," " Change mapleader
 
 " Centralize backups, swapfiles and undo history
@@ -164,42 +151,8 @@ endif
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
-
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
-
-
-" esc is way too far to reach
-imap jj <esc>
-
-" A couple of commands for auto-commenting and uncommenting
-map _bc :s/\(.*\)/# \1/
-:nohlsearch
-map _bu :s/^[ \t]*#[ ]\?//
-:nohlsearch
-
-map _cc :s#\(.*\)#// \1#
-:nohlsearch
-map _cu :s#^[ \t]*//[ ]\?##
-:nohlsearch
-
-map _vc :s#\(.*\)#" \1#
-:nohlsearch
-map _vu :s/^[ \t]*"[ ]\?//
-:nohlsearch
-
-map _mc :s#\(.*\)#> \1#
-:nohlsearch
-map _mu :s/^[ \t]*>[ ]\?//
-:nohlsearch
-
-map _tc :s#\(.*\)#% \1#
-:nohlsearch
-map _tu :s/^[ \t]*%[ ]\?//
-:nohlsearch
+" With touchbar, esc is hard to hit.  Pick something nearby
+imap `` <esc>
 
 " solaris special key bindings
 map [26~ u		" <undo> key
@@ -230,10 +183,6 @@ nmap <C-W>E :vnew \| vimshell bash<CR>
 " Clear last search (,qs)
 map <silent> <leader>qs <Esc>:noh<CR>
 " map <silent> <leader>qs <Esc>:let @/ = ""<CR>
-
-" Indent/unident block (,]) (,[)
-nnoremap <leader>] >i{<CR>
-nnoremap <leader>[ <i{<CR>
 
 " Paste toggle (,p)
 set pastetoggle=<leader>p
@@ -288,12 +237,17 @@ if &term=="linux" || &term=="xterm" || &term=="xterm-color" || &term=="vt100"
   set hlsearch
 endif
 
+if &term=="xterm-256color"
+    set t_Co=256
+endif
+
+
 " Automatic commands
 if has("autocmd")
-	" Enable file type detection
-	filetype on
+    " Enable file type detection
+    filetype on
 
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
     autocmd BufNewFile,BufRead *.gradle set syntax=groovy
 
