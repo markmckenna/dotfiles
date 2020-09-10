@@ -1,0 +1,4 @@
+set cindent
+set formatoptions=croq	" C-style comment recognition
+set makeprg=make\ %:r.class
+set sw=2 ts=2

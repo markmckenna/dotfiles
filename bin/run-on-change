@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+if [ -z "$1" -o -z "$2" ]; then
+    echo "USAGE: $0 <watched-dir> <command>"
+    exit 1
+fi
+
+dir=$1
+shift
+fswatch -o $dir | xargs -n1 -I{} $@

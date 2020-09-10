@@ -1,1 +1,4 @@
-set formatoptions=tn
+"set formatoptions=tnwa12
+set linebreak
+set wrap
+set sw=5

@@ -1,0 +1,2 @@
+export NEXUS_PLATFORM_USER=nexus-uploader
+export NEXUS_PLATFORM_PASS=nexus-uploader-password

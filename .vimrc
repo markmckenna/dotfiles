@@ -16,11 +16,13 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 Plugin 'lilydjwg/colorizer'
 
+Plugin 'udalov/kotlin-vim'
+
 Plugin 'itchyny/lightline.vim'
 set noshowmode " configuration for Lightline
 
 " Linting
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -74,7 +76,7 @@ set expandtab		" Replace tabs with spaces
 set exrc " Enable per-directory .vimrc files and disable unsafe commands in them
 set fillchars=      	" fill folds with blanks
 set foldcolumn=4 " Column to show folds
-set foldenable
+set nofoldenable " Disable folding"
 set foldlevel=2
 set foldmethod=syntax " Markers are used to specify folds.
 set foldminlines=0 " Allow folding single lines
@@ -124,8 +126,8 @@ set showcmd " Show the (partial) command as it’s being typed
 set showtabline=2 " Always show tab bar.
 set smartcase " Ignore 'ignorecase' if search patter contains uppercase characters.
 set smarttab " At start of line, <Tab> inserts shiftwidth spaces, <Bs> deletes shiftwidth spaces.
-set softtabstop=8 " Tab key results in X spaces
-set tabstop=8		" use tab width of X spaces
+set softtabstop=4 " Tab key results in X spaces
+set tabstop=4 " use tab width of X spaces
 set title " Show the filename in the window titlebar
 set ttyfast " Optimize for fast terminal connections
 set ttymouse=xterm " Set mouse type to xterm.
@@ -150,9 +152,6 @@ endif
 
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
-
-" With touchbar, esc is hard to hit.  Pick something nearby
-imap `` <esc>
 
 " solaris special key bindings
 map [26~ u		" <undo> key
@@ -256,7 +255,15 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.cc source ~/.vimrc-c
     autocmd BufNewFile,BufRead *.cpp source ~/.vimrc-c
     autocmd BufNewFile,BufRead *.hpp source ~/.vimrc-c
+
     autocmd BufNewFile,BufRead *.java source ~/.vimrc-java
+
+    autocmd BufNewFile,BufRead *.js source ~/.vimrc-js
+
     autocmd BufNewFile,BufRead *.txt source ~/.vimrc-txt
+    autocmd BufNewFile,BufRead *.md source ~/.vimrc-txt
+
+    autocmd BufNewFile,BufRead *.md source ~/.vimrc-md
+
     autocmd BufNewFile,BufRead *.tex source ~/.vimrc-tex
 endif

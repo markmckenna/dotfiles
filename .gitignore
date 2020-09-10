@@ -8,6 +8,8 @@ Thumbs.db
 
 # Secure files
 .bash_secure
+.ssh
+
 
 # Files that might appear on external disks
 .Spotlight-V100

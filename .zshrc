@@ -12,7 +12,7 @@ export ZSH=/Users/mmckenna/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="amuse"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -73,6 +73,8 @@ plugins=(
   osx
   sublime
   vscode
+  fzf
+  navi
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -122,6 +124,12 @@ if [ -f '/Users/mmckenna/google-cloud-sdk/completion.zsh.inc' ]; then source '/U
 alias setproxy='adb shell settings put global http_proxy `ifconfig | grep "inet 172.16" | head -1 | cut -d\  -f 2`:8888'
 alias clearproxy='adb shell settings delete global http_proxy;adb shell settings delete global global_http_proxy_host;adb shell settings delete global http_proxy_port'
 
-export NEXUS_AVD="Pixel_2_XL_API_27"
+alias gb='./gradlew build'
+
+export NEXUS_AVD="phone"
+
+eval $(thefuck --alias)
+
+alias clear="clear && printf '\e[3J'"
 
 popd

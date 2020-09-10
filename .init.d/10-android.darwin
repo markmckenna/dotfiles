@@ -1,7 +1,7 @@
 export ANDROID_HOME=~/Library/Android/sdk
 export ANDROID_BUILDTOOLS_VER=28.0.3
 export ANDROID_SDK=$ANDROID_HOME
-export ANDROID_NDK=$ANDROID_HOME/android-ndk-r10e
+export NDK_HOME=$ANDROID_HOME/ndk-bundle
 
 if [ -d $ANDROID_HOME ]; then
     PATH=$PATH:$ANDROID_HOME/emulator
@@ -9,6 +9,11 @@ if [ -d $ANDROID_HOME ]; then
     PATH=$PATH:$ANDROID_HOME/tools
     PATH=$PATH:$ANDROID_HOME/platform-tools
     PATH=$PATH:$ANDROID_HOME/build-tools/$ANDROID_BUILDTOOLS_VER
+fi
+
+if [ -d $NDK_HOME ]; then
+    PATH=$PATH:$NDK_HOME/build
+    PATH=$PATH:$NDK_HOME/build/tools
 fi
 
 alias java='java -Dapple.awt.UIElement=true'
