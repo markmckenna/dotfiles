@@ -5,19 +5,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-
-" Git
 Plugin 'tpope/vim-fugitive'
-
-" Pretty things
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 Plugin 'lilydjwg/colorizer'
-
-Plugin 'udalov/kotlin-vim'
-
+" Plugin 'udalov/kotlin-vim'
 Plugin 'itchyny/lightline.vim'
 set noshowmode " configuration for Lightline
 
