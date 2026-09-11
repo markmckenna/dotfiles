@@ -55,6 +55,8 @@
 
     # Interactively rebase the listed branch onto origin/develop
     rebase-to-develop = "!git update && git rebase -i origin/develop"
+	unrm = "!f() { git checkout $(git rev-list -n 1 HEAD -- \"$1\")^ -- \"$1\"; }; f"
+	deleted = log --diff-filter=D --name-only --oneline
 
 [apply]
 

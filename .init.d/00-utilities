@@ -1,5 +1,20 @@
-function install-player() {
-    ./gradlew -p Player $@ app:installDebug
+#/bin/bash
+
+# Removes an entry from everywhere in the path
+function removeFromPath() {  
+  PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
+}
+
+# Adds (moves) an entry to the end of the path.
+function addToPath() {
+  removeFromPath $1
+  [ -d $1 ] && PATH=$PATH:$1
+}
+
+# Adds (moves) an entry to the beginning of the path.
+function addPathOverride() {
+  removeFromPath $1
+  [ -d $1 ] && PATH=$1:$PATH
 }
 
 # Change working directory to the top-most Finder window location

@@ -1,4 +1,8 @@
-#!/bin/zsh
+#!/bin/bash
+#
+# Dotfiles management code. Basically a wrapper around git that disables some sensitive commands.
+# Regular git commands don't work because the git metadata doesn't live at .git, so this gives us
+# a decent place to protect things from.
 
 dot() {
   case "$1" in

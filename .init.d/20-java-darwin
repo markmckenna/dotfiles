@@ -1,27 +1,10 @@
-export PATH=$PATH:/Development/jad158g.mac.intel
+addToPath "/Development/jad158g.mac.intel"
 
 function decompile() {
   local OLDJDK=`getjdk`
   setjdk 1.8
   java -jar ~/bin/jd-core-java-1.2.jar $1.jar $1
   setjdk $OLDJDK
-}
-
-# tool macros
-function decompile-maven() {
-  local PATH=~/.m2/repository/$1/$2/$3
-
-  pushd $PATH
-
-  if [ $? -ne 0 ]; then
-    echo "No such Maven entry found at $PATH"
-    return
-  fi
-
-  decompile $2-$3
-  jar -cf $2-$3-sources.jar -C $2-$3 *
-
-  popd
 }
 
 function setjdk() {

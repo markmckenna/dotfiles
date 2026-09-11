@@ -1,1 +1,1 @@
-[ -d $GOPATH/bin ] && PATH="$GOPATH/bin:$PATH"
+addToPath "$GOPATH/bin"

@@ -1,6 +1,0 @@
-# BREW_COREUTILS_DIR=$(brew --prefix coreutils)
-BREW_COREUTILS_DIR=/usr/local/opt/coreutils # for speed
-
-export PATH="$BREW_COREUTILS_DIR/libexec/gnubin:/usr/local/bin:$PATH"
-
-alias cask='brew cask'

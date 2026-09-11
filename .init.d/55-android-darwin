@@ -1,0 +1,17 @@
+addToPath "/Users/mmckenna/Library/Android/sdk/ndk-bundle"
+
+export ANDROID_HOME=~/Library/Android/sdk
+export ANDROID_BUILDTOOLS_VER=28.0.3
+export ANDROID_SDK=$ANDROID_HOME
+export NDK_HOME=$ANDROID_HOME/ndk-bundle
+
+addToPath "$ANDROID_HOME/emulator"
+addToPath "$ANDROID_HOME/bin"
+addToPath "$ANDROID_HOME/tools"
+addToPath "$ANDROID_HOME/platform-tools"
+addToPath "$ANDROID_HOME/build-tools/$ANDROID_BUILDTOOLS_VER"
+
+addToPath "$NDK_HOME/build"
+addToPath "$NDK_HOME/build/tools"
+
+alias java='java -Dapple.awt.UIElement=true'

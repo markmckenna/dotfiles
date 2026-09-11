@@ -1,0 +1,69 @@
+# Usage: `source $0` from .bashrc or whatever.
+#
+# Loads files in $INIT_DIR recursively, in name order, filtering by $OSTYPE.
+# - Files without execute permission are skipped.
+# - Files without extensions are sourced; files with extensions are executed.
+#
+# NOTE: sourcing preserves exports and aliases; executing does not.
+
+export INIT_DIR=${INIT_DIR:-$HOME/.init.d}
+
+init_d_load() {
+    # shellcheck disable=SC1090  # don't warn on dynamic sourced files
+    [ -d "$INIT_DIR" ] || return 0
+    set --                                      # no stray args in snippets
+    local CDPATH= f home=$PWD
+    local platform=${OSTYPE:-$(uname -s | tr 'A-Z' 'a-z')} # drop suffices
+    platform=${platform%%[-0-9]*}
+    local -a _init_d_files=()
+
+    # Depth-first walk
+    _init_d_scan() {                            # $1=dir $2=depth
+        [ "${2:-0}" -gt 8 ] && return 0         # symlink-loop backstop
+        local e n stem
+        for e in "$1"/*; do
+            [ -e "$e" ] || continue
+
+            # skip unmatched platforms
+            n=${e##*/} stem=${n%.*}
+            case ${stem##*-} in
+                linux|darwin|freebsd|openbsd|netbsd|cygwin|msys|solaris|aix)
+                    [ "${stem##*-}" = "$platform" ] || continue ;;
+            esac
+            if [ -d "$e" ]; then
+                _init_d_scan "$e" "$(( ${2:-0} + 1 ))"
+            elif [ -f "$e" ] && [ -x "$e" ]; then
+                _init_d_files+=( "$e" )         # -f/-x follow symlinks
+            fi
+        done
+    }
+
+    # Use C collation for consistent ordering across platforms
+    local _lc_set=${LC_ALL+1} _lc_old=${LC_ALL-}
+    LC_ALL=C
+    _init_d_scan "$INIT_DIR"
+    if [ -n "$_lc_set" ]; then LC_ALL=$_lc_old; else unset LC_ALL; fi
+    unset -f _init_d_scan
+
+    [ -n "$INIT_VERBOSE" ] && printf 'Loading from %s for platform %s\n' "$INIT_DIR" "$platform" >&2
+
+    for f in "${_init_d_files[@]}"; do
+        rel=${f#"$INIT_DIR"/} base=${f##*/}
+        cd -- "${f%/*}" || continue             # absolute target, to handle scripts that cd
+        f=${f##*/}
+        case $f in
+            *.*)
+                [ -n "$INIT_VERBOSE" ] && printf '* exec %s\n' $rel >&2
+                "./$f" 
+                ;;
+            *)
+                [ -n "$INIT_VERBOSE" ] && printf '* source %s\n' $rel >&2
+                . "./$f" 
+                ;;
+        esac || printf '%s failed (%d)\n' "$f" "$?" >&2
+    done
+    cd -- "$home"
+}
+
+init_d_load
+unset -f init_d_load

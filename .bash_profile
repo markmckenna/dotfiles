@@ -2,11 +2,7 @@
 export PATH="$PATH:/Users/mmckenna/.docker/bin"
 # End of Docker Desktop section.
 
-# New init-scripts style configuration options
-source .init.bash
-
-# Common values: linux, darwin, cygwin
-isOs () { [[ $OSTYPE == *$1* ]]; }
+source .shrc
 
 [ -r .functions ] && source .functions
 

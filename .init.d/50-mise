@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+eval "$(mise activate zsh)"
+
+# Cheap little standin for nvm backed by mise
+nvm() {
+  if [ "$1" = "use" ]; then
+    # Translate 'nvm use <version>' to 'mise use node@<version>'
+    if [ -z "$2" ]; then
+      # 'nvm use' with no args usually means "read local file"
+      # mise does this automatically, but we can force a reshim/reload
+      mise install
+    else
+      mise use node@"$2"
+    fi
+  elif [ "$1" = "install" ]; then
+    # Translate 'nvm install <version>'
+    mise use node@"$2"
+  elif [ "$1" = "current" ]; then
+    mise current node
+  elif [ "$1" = "list" ] || [ "$1" = "ls" ]; then
+    mise ls node
+  else
+    echo "This is a limited mise proxy for nvm."
+    echo "Command not supported: nvm $1"
+  fi
+}
