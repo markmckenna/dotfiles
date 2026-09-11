@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+dot() {
+  case "$1" in
+    clean)
+      print -u2 "dot: clean disabled — would delete untracked files across \$HOME"
+      return 1
+      ;;
+    add)
+      local a
+      for a in "${@:2}"; do
+        case "$a" in
+          .|-A|--all|:/)
+            print -u2 "dot: refusing '$a' — add dotfiles by explicit path"
+            return 1
+            ;;
+        esac
+      done
+      ;;
+  esac
+  command git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
+}
