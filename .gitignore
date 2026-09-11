@@ -1,20 +1,26 @@
-# Folder view configuration files
-.DS_Store
+# Local config files
 Desktop.ini
 
-# Thumbnail cache files
+# Temp and cache files
 ._*
 Thumbs.db
+.DS_Store
+tmp/
+.cache/
+.Trash/
+.Trashes
 
 # Secure files
 .bash_secure
-.ssh
-
+.ssh/
+.git/
+.aws/credentials
+.gnupg/
+.local/share/
 
 # Files that might appear on external disks
 .Spotlight-V100
-.Trashes
 
+# Claude stuff that's individualized
 **/.claude/settings.local.json
-
 **/.claude/.cc-writes/
