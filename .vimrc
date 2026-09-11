@@ -5,13 +5,19 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+
+" Git
 Plugin 'tpope/vim-fugitive'
+
+" Pretty things
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 Plugin 'lilydjwg/colorizer'
-" Plugin 'udalov/kotlin-vim'
+
+Plugin 'udalov/kotlin-vim'
+
 Plugin 'itchyny/lightline.vim'
 set noshowmode " configuration for Lightline
 
@@ -21,6 +27,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_check_on_wq = 1
+
+"Plugin Yggdroot/indentLine
+let g:indentLine_setConceal = 0
 
 " Work flow
 " Plugin 'airblade/vim-rooter'
@@ -62,6 +71,7 @@ set binary " Don’t add empty newlines at the end of files
 set bs=2                " Allow backspacing over everything in insert mode
 set clipboard=unnamed " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set completeopt=menu,menuone
+set conceallevel=0
 set confirm
 set cursorline " Highlight current line
 set encoding=utf-8 nobomb " Use UTF-8 without BOM

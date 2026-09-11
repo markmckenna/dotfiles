@@ -1,4 +1,0 @@
-set formatoptions=croq
-" TODO: This isn't working.
-" set comments=":[//]\: # ("
-set sw=2
