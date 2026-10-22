@@ -1,5 +1,6 @@
 # Local config files
 Desktop.ini
+.env
 
 # Temp and cache files
 ._*
@@ -17,6 +18,9 @@ tmp/
 .aws/credentials
 .gnupg/
 .local/share/
+*.pem
+*key
+id_rsa*
 
 # Files that might appear on external disks
 .Spotlight-V100

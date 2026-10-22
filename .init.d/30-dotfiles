@@ -7,7 +7,7 @@
 dot() {
   case "$1" in
     clean)
-      print -u2 "dot: clean disabled — would delete untracked files across \$HOME"
+      echo "dot: clean disabled — would delete untracked files across \$HOME" >&2
       return 1
       ;;
     add)
@@ -15,7 +15,7 @@ dot() {
       for a in "${@:2}"; do
         case "$a" in
           .|-A|--all|:/)
-            print -u2 "dot: refusing '$a' — add dotfiles by explicit path"
+            echo "dot: refusing '$a' — add dotfiles by explicit path" >&2
             return 1
             ;;
         esac

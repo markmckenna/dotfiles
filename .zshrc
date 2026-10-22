@@ -8,4 +8,4 @@ autoload -U compinit && compinit -u
 # Startup config that should be applied regardless of shell
 source "$HOME/.init"
 
-source /Users/mmckenna/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
+source "$HOME/.safe-chain/scripts/init-posix.sh" # Safe-chain Zsh initialization script
