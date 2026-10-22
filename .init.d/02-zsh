@@ -34,7 +34,3 @@ plugins=(git)
 
 # Start OMZ
 source $ZSH/oh-my-zsh.sh
-
-# Enable autocompletion (-u ignores loads for files by other users, which we accept)
-autoload -Uz compinit && compinit -u
-# optional: compinit -C skips audits and freshness checks, at cost of running compinit on change

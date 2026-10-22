@@ -1,8 +1,13 @@
 #/bin/bash
 
 # Removes an entry from everywhere in the path
-function removeFromPath() {  
-  PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
+function removeFromPath() {
+  local p=":$PATH:"
+  while [[ $p == *":$1:"* ]]; do
+    p=${p//":$1:"/:}
+  done
+  p=${p#:}; p=${p%:}
+  PATH=$p
 }
 
 # Adds (moves) an entry to the end of the path.

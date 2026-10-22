@@ -1,2 +1,2 @@
 addPathOverride "/usr/local/bin"
-. "$HOME/.local/bin/env"
+addPathOverride "$HOME/.local/bin"
